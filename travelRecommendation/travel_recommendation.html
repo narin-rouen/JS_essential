@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelBloom - Explore Dream Destinations</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <style>
+      /* General Styles */
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background: url("NewYork.jpg") no-repeat center center/cover; /* Use your background image */
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Overlay for better readability */
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+      }
+
+      /* Container for content */
+      .container {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        padding: 20px;
+        animation: fadeIn 2s ease-in-out;
+      }
+
+      /* Navigation Bar */
+      nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 3;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 15px;
+        transition: all 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+      }
+
+      /* Search Box */
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search-box input {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: 250px;
+        font-size: 16px;
+      }
+
+      .search-box button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #ff5722;
+        color: white;
+        font-size: 16px;
+        transition: background 0.3s ease;
+      }
+
+      .search-box button:hover {
+        background: #e64a19;
+      }
+
+      /* Hero Text */
+      .hero-text {
+        font-size: 60px;
+        font-weight: bold;
+        margin: 20px 0;
+        animation: slideIn 1.5s ease-in-out;
+      }
+
+      .hero-subtext {
+        font-size: 20px;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+        animation: fadeIn 2.5s ease-in-out;
+      }
+
+      /* Call-to-Action Button */
+      .cta-button {
+        margin-top: 20px;
+        padding: 15px 30px;
+        background: #ff5722;
+        border: none;
+        color: white;
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: bounce 2s infinite;
+      }
+
+      .cta-button:hover {
+        background: #e64a19;
+        transform: scale(1.05);
+      }
+
+      /* Social Icons */
+      .social-icons {
+        position: absolute;
+        left: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        z-index: 3;
+      }
+
+      .social-icons a {
+        color: white;
+        font-size: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #ff5722;
+        transform: translateY(-5px);
+      }
+      /* Social Icons Styles */
+      .social-icons {
+        position: absolute;
+        left: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        z-index: 3;
+      }
+
+      .social-icons a {
+        color: white;
+        font-size: 30px; /* Adjust icon size */
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+        padding: 10px;
+        border-radius: 50%; /* Circular background for each icon */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Subtle background behind icons */
+        width: 50px; /* Icon container size */
+        height: 50px; /* Icon container size */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .social-icons a:hover {
+        color: #ff5722; /* Change color on hover */
+        transform: scale(1.1); /* Zoom effect on hover */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.2
+        ); /* Lighten background on hover */
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Search Box Styles */
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px;
+      }
+
+      .search-box input {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: 250px;
+        font-size: 16px;
+      }
+
+      .search-box button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #ff5722;
+        color: white;
+        font-size: 16px;
+        transition: background 0.3s ease;
+      }
+
+      .search-box button:hover {
+        background: #e64a19;
+      }
+
+      /* Recommendations Container */
+      #recommendations {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      /* Recommendation Item Styles */
+      .recommendation-item {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .recommendation-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .recommendation-item h3 {
+        font-size: 18px;
+        color: white;
+        margin-top: 15px;
+      }
+
+      .recommendation-item p {
+        font-size: 16px;
+        color: #ff5722;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+      <div class="logo">TravelBloom</div>
+      <ul>
+        <li><a href="travel_recommendation.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter a destination or keyword"
+        />
+        <button onclick="searchRecommendations()">Search</button>
+        <button onclick="clearResults()">Clear</button>
+      </div>
+    </nav>
+    <div id="recommendations"></div>
+    <!-- This is where the recommendations will be displayed -->
+
+    <div class="social-icons">
+      <a href="https://twitter.com" target="_blank" class="social-icon"
+        ><i class="fab fa-twitter"></i
+      ></a>
+      <a href="https://facebook.com" target="_blank" class="social-icon"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+      <a href="https://instagram.com" target="_blank" class="social-icon"
+        ><i class="fab fa-instagram"></i
+      ></a>
+    </div>
+
+    <div class="container">
+      <h1 class="hero-text">EXPLORE DREAM DESTINATIONS</h1>
+      <p class="hero-subtext">
+        It encourages exploration of unfamiliar territories, embracing diverse
+        cultures and landscapes, while pursuing the desired destination that
+        captivates the heart and ignites a sense of wonder.
+      </p>
+      <button class="cta-button">BOOK NOW</button>
+
+      <div id="recommendations"></div>
+      <!-- This is where the recommendations will be displayed -->
+    </div>
+
+    <script src="scripts.js"></script>
+    <!-- Link to your JavaScript file -->
+  </body>
+</html>
